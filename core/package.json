@@ -1,0 +1,15 @@
+{
+  "name": "@conical/core",
+  "version": "1.0.0",
+  "description": "A Flask and Angular inspired light weight http server framework for typescript first.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Crockett",
+  "license": "ISC",
+  "dependencies": {
+    "jshashes": "^1.0.7",
+    "reflect-metadata": "^0.1.10"
+  }
+}
