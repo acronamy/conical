@@ -20,6 +20,11 @@ function mount(mountOptions) {
                 let accessor = Object.freeze(Object.assign({
                     value: proto[referal]
                 }, proto[key]));
+                if ("url" in proto) {
+                    if (proto.url !== "/") {
+                        proto[key].url = proto.url + proto[key].url.replace(/\/$/, "");
+                    }
+                }
                 proto.routes.set(proto[key].url, accessor);
                 proto.routes.set(proto[key].id, accessor);
                 //clean up tmp keys
@@ -54,9 +59,10 @@ function run(Server) {
         for (let mount of serverConfig.declarations) {
             const mountRoutes = mount.prototype.routes;
             //
+            console.log("REQ", req.url);
+            console.log(mountRoutes);
             if (mountRoutes.has(req.url)) {
                 res.end(mountRoutes.get(req.url).value());
-                break;
             }
             else {
                 res.end("404");

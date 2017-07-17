@@ -1,4 +1,5 @@
 import * as path from "path";
+import * as url from "url";
 import * as http from "http";
 import * as Hashes from "jshashes";
 
@@ -33,13 +34,18 @@ function mount(mountOptions:MountOptions) {
                     value: proto[referal]
                 }, proto[key]))
 
+                if("url" in proto){
+                    if(proto.url!=="/"){
+                        proto[key].url = proto.url+proto[key].url.replace(/\/$/, "")
+                    }
+                }
+
                 proto.routes.set( proto[key].url, accessor );
                 proto.routes.set( proto[key].id, accessor );
                 //clean up tmp keys
                 delete proto[key];
             }
         })
-
     }
 }
 
@@ -73,9 +79,12 @@ export function run( Server:Function ){
         for(let mount of serverConfig.declarations){
             const mountRoutes = mount.prototype.routes;
             //
+            console.log("REQ",req.url)
+            console.log(mountRoutes)
+
             if(mountRoutes.has(req.url)){
                 res.end( mountRoutes.get(req.url).value() );
-                break;
+                
             }
             else{
                 res.end("404");

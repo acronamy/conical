@@ -1,6 +1,6 @@
 interface MountOptions{
     views:string|string[];
-    path:string;
+    url:string;
     providers?:any[];
 }
 
