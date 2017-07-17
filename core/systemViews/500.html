@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton-framework/1.1.1/skeleton.min.css" rel="stylesheet">
+        <style>
+            body{
+                padding-top: 50px;
+            }
+            .commnet{
+                color: #808080;
+            }
+            .commnet::before{
+                content: "// ";
+            }
+            .key{
+                color:lightslategrey;
+            }
+            /*
+            file exists so inheritly path exists
+            */
+            [data-file-exists="false"]{
+                color:darkred;
+            }
+            [data-file-exists="true"]{
+                color:darkcyan;
+            }
+            [data-file-exists="true"],
+            [data-file-exists="false"]{
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <header>
+                <h3>Internal error</h3>
+                <ul id='error-highlights'>
+                    <li>Reasoning: <span id="reasoning">...</span></li>
+                    <li>Fallback tries: <span id="fallback-tries">...</span></li>
+                    <li>Status: <code>500</code></li>
+                </ul>
+            </header>
+            <main>
+                <hr/>
+                <h5>Problems</h5>
+                <p>Using defined views in the mount <span id="mount-name">...</span> Conical tried the following paths in this order.</p>
+
+                <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Scanned directory</th>
+                        <th><span id="template-file"></span></th>
+                    </tr>
+                </thead>
+                <tbody id="resolve-fallback-order">
+                </tbody>
+                </table>
+
+                <p><span id="template-file"></span> was not found in <span id="fallback-tries">...</span> directories.</p>
+                <h5>Technical bits</h5>
+                <pre><code id="stacktrace"></code></pre>
+                <hr>
+                <p> You are seeing this error because you have not set a 500 page in your <code>server.module</code> file. Change this to the path of your custom 500 page and Conical will use this instead.</p>
+                <h5>Disable this page</h5>
+                <pre><code>
+<span class="commnet">How to disable debug 500</span>
+{
+    <span class="commnet">There are other system pages available</span>
+    systemPages: {
+        <span class="commnet">You can use any file extension as long as support has been added via a service</span>
+        internalSeverError_500: "path/to/500.html" 
+    } 
+}
+                </code></pre>
+            </main>
+        </div>
+
+    </body>
+</html>

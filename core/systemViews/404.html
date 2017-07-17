@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>404 </title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton-framework/1.1.1/skeleton.min.css" rel="stylesheet">
+        <style>
+            body{
+                padding-top: 50px;
+            }
+            .commnet{
+                color: #808080;
+            }
+            .commnet::before{
+                content: "// ";
+            }
+            .key{
+                color:lightslategrey;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <header>
+                <h3>Page not found</h3>
+                <ul id='error-highlights'>
+                    <li>Request method: <span id="req-method">...</span></li>
+                    <li>Request url: <span id="req-url">...</span></li>
+                    <li>Status: <code>404</code></li>
+                </ul>
+            </header>
+            <main>
+                <hr>
+                <p> You are seeing this error because you have not set a 404 page in your <code>server.module</code> file. Change this to the path of your custom 404 page and Conical will use this instead.</p>
+                <h5>Disable this page</h5>
+                <pre><code>
+<span class="commnet">Disable debug 404</span>
+{
+    <span class="commnet">There are other system pages available</span>
+    systemPages: {
+        <span class="commnet">You can use any file extension as long as support has been added via a service</span>
+        notFound_404: "path/to/404.html" 
+    } 
+}
+                </code></pre>
+            </main>
+        </div>
+
+    </body>
+</html>
