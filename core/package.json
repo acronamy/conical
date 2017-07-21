@@ -19,6 +19,10 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.2",
     "@types/fs-extra": "^3.0.3",
-    "@types/node": "^8.0.13"
+    "@types/node": "^8.0.13",
+    "awesome-typescript-loader": "^3.2.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.3.0"
   }
 }
